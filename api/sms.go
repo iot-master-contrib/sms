@@ -77,6 +77,6 @@ func smsRouter(app *gin.RouterGroup) {
 	app.POST("/count", curd.ApiCount[types.Sms]())
 	app.POST("/search", curd.ApiSearch[types.Sms]())
 	app.GET("/list", curd.ApiList[types.Sms]())
-	app.GET("/:id", curd.ParseParamStringId, curd.ApiGet[types.Sms]())
-	app.GET("/:id/delete", curd.ParseParamStringId, curd.ApiDeleteHook[types.Sms](nil, nil))
+	app.GET("/:id", curd.ParseParamId, curd.ApiGet[types.Sms]())
+	app.GET("/:id/delete", curd.ParseParamId, curd.ApiDeleteHook[types.Sms](nil, nil))
 }

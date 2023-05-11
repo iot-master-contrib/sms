@@ -11,7 +11,7 @@ import { CdkDrag, CdkDropList } from "@angular/cdk/drag-drop";
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AliyunComponent } from './setting/aliyun/aliyun.component';
-import { TcCloudComponent } from './setting/tc-cloud/tc-cloud.component';
+import { TcCloudComponent } from './setting/tc-cloud/tc-cloud.component'; 
 import { HicloudComponent } from './setting/hicloud/hicloud.component';
 import { MsgLogComponent } from './msg-log/msg-log.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
@@ -30,6 +30,7 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 registerLocaleData(zh);
 
 @NgModule({
@@ -45,6 +46,7 @@ registerLocaleData(zh);
     BaseModule,
     NzLayoutModule,
     NzMenuModule,
+    NzModalModule,
     NzTagModule,
     NzTableModule,
     NzIconModule,NzInputNumberModule,

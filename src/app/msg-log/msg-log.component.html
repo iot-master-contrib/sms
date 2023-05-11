@@ -1,66 +1,127 @@
 <nz-layout>
-  <app-common-header
-    title="短信记录"
-    moduleName="sms"
-    (onSearch)="search($event)"
-    
-    (onLoad)="load()"
-  >
-  </app-common-header>
-
-  <nz-content>
-    <ng-template #totalTemplate let-total>总共 {{ total }} 条</ng-template>
-    <nz-table
-      #basicTable
-      [nzData]="datum"
-      nzShowSizeChanger
-      [nzFrontPagination]="false"
-      [nzShowTotal]="totalTemplate"
-      (nzPageSizeChange)="pageSizeChange($event)"
-      (nzPageIndexChange)="pageIndexChange($event)"
-      [nzPageSize]="pageSize"
-      [nzPageIndex]="pageIndex"
-      [nzTotal]="total"
-      (nzQueryParams)="onQuery($event)"
+    <app-common-header
+        title="短信记录"
+        moduleName="sms"
+        (onSearch)="search($event)"
+        (onLoad)="load()"
+        (onAdd)="onAdd()"
     >
-      <thead>
-        <tr>
-          <th>ID</th>
+    </app-common-header>
 
-          <th>类型</th>
-          <th>电话</th>
-          <th>内容</th>
-          <th>结果</th>
-          <th>创建时间</th>
-          <!-- <th>操作</th> -->
-        </tr>
-        
-      </thead>
-      <tbody>
-        <tr
-          *ngFor="let data of basicTable.data; let i = index"
-          (dblclick)="open(data.id)"
+    <nz-content>
+        <ng-template #totalTemplate let-total>总共 {{ total }} 条</ng-template>
+        <nz-table
+            #basicTable
+            [nzData]="datum"
+            nzShowSizeChanger
+            [nzFrontPagination]="false"
+            [nzShowTotal]="totalTemplate"
+            (nzPageSizeChange)="pageSizeChange($event)"
+            (nzPageIndexChange)="pageIndexChange($event)"
+            [nzPageSize]="pageSize"
+            [nzPageIndex]="pageIndex"
+            [nzTotal]="total"
+            (nzQueryParams)="onQuery($event)"
         >
-          <td>{{ data.id }}</td>
-          <td>{{ data.type }}</td>
-          <td>{{ data.cellphone }}</td>
-          <td>{{ data.content }}</td>
-          <td>{{ data.result }}</td>
-          <td>
-            <nz-tag [nzColor]="data.result ? 'success' : 'error'">
-              <span>{{ data.result ? "成功" : "失败" }}</span>
-            </nz-tag>
-          </td>
-          <td>{{ data.created }}</td>
-          <!-- <td nzRight>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>类型</th>
+                    <th>电话</th>
+                    <th>内容</th>
+                    <th>结果</th>
+                    <th>创建时间</th>
+                    <!-- <th>操作</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="let data of basicTable.data; let i = index"
+                    (dblclick)="open(data.id)"
+                >
+                    <td>{{ data.id }}</td>
+                    <td>{{ data.type }}</td>
+                    <td>{{ data.cellphone }}</td>
+                    <td>{{ data.content }}</td>
+                    <td>{{ data.result }}</td>
+                    <td>
+                        <nz-tag [nzColor]="data.result ? 'success' : 'error'">
+                            <span>{{ data.result ? "成功" : "失败" }}</span>
+                        </nz-tag>
+                    </td>
+                    <td>{{ data.created }}</td>
+                    <!-- <td nzRight>
             <app-operate
               [url]="'device'"
               [id]="data.id"
               (onSend)="load()"
             ></app-operate>
           </td> -->
-        </tr>
-      </tbody>
-    </nz-table>
-  </nz-content>
+                </tr>
+            </tbody>
+        </nz-table>
+    </nz-content>
 </nz-layout>
+
+<nz-modal
+    [(nzVisible)]="isVisible"
+    nzTitle="The first Modal"
+    (nzOnCancel)="cancel()"
+    (nzOnOk)="submit()"
+> 
+    <form nz-form [formGroup]="group" (ngSubmit)="submit()" *nzModalContent>
+        <!-- <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="id"
+                >id</nz-form-label
+            >
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+                <input nz-input formControlName="id" />
+                
+            </nz-form-control>
+        </nz-form-item> -->
+
+
+         <!-- <ng-template #nameErrorTpl let-control>  [nzErrorTip]="nameErrorTpl"
+        <ng-container *ngIf="control.hasError('required')">请输入名称!</ng-container>
+      </ng-template> -->
+
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24">类型</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+                <nz-select
+                    [nzOptions]="listOfOption"
+                    name="type"
+                    formControlName="type"
+                    nzAllowClear
+                ></nz-select>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="cellphone"
+                >电话</nz-form-label
+            >
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+                <input nz-input formControlName="cellphone" />
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="content"
+                >内容</nz-form-label
+            >
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+                <input nz-input formControlName="content" />
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="result"
+                >结果</nz-form-label
+            >
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+                <nz-switch name="result" formControlName="result"></nz-switch>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</nz-modal>

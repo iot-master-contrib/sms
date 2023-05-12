@@ -12,8 +12,8 @@ export class CommonHeaderComponent {
   @Input() title = "";
   @Input()
   set moduleName(moduleName: string) {
-    this.downloadHref = `/api/${moduleName}/export`;
-    this.importHref = `/api/${moduleName}/import`;
+    this.downloadHref = `/app/${moduleName}/api/${moduleName}/export`;
+    this.importHref = `/app/${moduleName}/api/${moduleName}/import`;
   };
   @Output() onLoad = new EventEmitter<string>();
   @Output() onSearch = new EventEmitter<string>();

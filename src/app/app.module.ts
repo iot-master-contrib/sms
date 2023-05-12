@@ -31,6 +31,7 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 registerLocaleData(zh);
 
 @NgModule({
@@ -46,6 +47,7 @@ registerLocaleData(zh);
     BaseModule,
     NzLayoutModule,
     NzMenuModule,
+    NzPopconfirmModule,
     NzModalModule,
     NzTagModule,
     NzTableModule,

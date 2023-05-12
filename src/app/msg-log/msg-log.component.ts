@@ -60,7 +60,7 @@ export class MsgLogComponent {
                 this.loading = false;
             });
     }
-    delete(index: number, id: number) {
+    delete( id: number) {
         this.rs.get(this.url + `${id}/delete`).subscribe((res) => {
             this.msg.success('删除成功');
             this.load();
@@ -92,7 +92,7 @@ export class MsgLogComponent {
         //  this.msg.info('取消删除');
         this.isVisible = false;
     }
-
+   disDelete(){this.msg.info('取消删除');}
     open(id: string) {
         //this.router.navigateByUrl("/admin/device/" + id)
     }

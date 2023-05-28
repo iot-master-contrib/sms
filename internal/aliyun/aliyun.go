@@ -1,4 +1,4 @@
-package internal
+package aliyun
 
 import (
 	"encoding/json"
@@ -7,6 +7,7 @@ import (
 	util "github.com/alibabacloud-go/tea-utils/v2/service"
 	"github.com/alibabacloud-go/tea/tea"
 	"github.com/zgwit/iot-master/v3/pkg/log"
+	"strings"
 )
 
 type Sender struct {
@@ -27,11 +28,11 @@ func (s *Sender) Connect(id, secret string) error {
 	return err
 }
 
-func (s *Sender) Send(phone, sign, code string, param map[string]string) error {
+func (s *Sender) Send(phone []string, sign, code string, param map[string]string) error {
 	p, _ := json.Marshal(param)
 
 	req := &sms.SendSmsRequest{
-		PhoneNumbers:  tea.String(phone),
+		PhoneNumbers:  tea.String(strings.Join(phone, ",")),
 		SignName:      tea.String(sign),
 		TemplateCode:  tea.String(code),
 		TemplateParam: tea.String(string(p)),

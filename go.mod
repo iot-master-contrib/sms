@@ -9,6 +9,8 @@ require (
 	github.com/alibabacloud-go/tea-utils/v2 v2.0.1
 	github.com/gin-gonic/gin v1.9.0
 	github.com/swaggo/swag v1.16.1
+	github.com/tencentcloud/tencentcloud-sdk-go v3.0.233+incompatible
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.665
 	github.com/zgwit/iot-master/v3 v3.1.3
 )
 

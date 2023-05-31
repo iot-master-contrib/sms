@@ -2,8 +2,8 @@ package api
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/iot-master-contrib/sms/types"
 	"github.com/zgwit/iot-master/v3/pkg/curd"
-	"sms/types"
 )
 
 // @Summary 查询短消息数量
